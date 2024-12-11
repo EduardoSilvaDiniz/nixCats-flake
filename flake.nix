@@ -127,21 +127,21 @@
       };
 
       startupPlugins = {
-        debug = with pkgs.vimPlugins; [
-          nvim-nio
-        ];
+        # debug = with pkgs.vimPlugins; [
+        #   nvim-nio
+        # ];
         general = with pkgs.vimPlugins; {
           # you can make subcategories!!!
           # (always isnt a special name, just the one I chose for this subcategory)
           always = [
-            lze
-            vim-repeat
-            plenary-nvim
+            rocks-nvim
+            # vim-repeat
+            # plenary-nvim
           ];
-          extra = [
-            oil-nvim
-            nvim-web-devicons
-          ];
+          # extra = [
+          #   oil-nvim
+          #   nvim-web-devicons
+          # ];
         };
         themer = with pkgs.vimPlugins; (
           builtins.getAttr (categories.colorscheme or "onedark") {
@@ -154,126 +154,126 @@
       # não carregados automaticamente na inicialização.
       # use com packadd e um autocomando na configuração para alcançar carregamento preguiçoso
       optionalPlugins = {
-        debug = with pkgs.vimPlugins; {
-          # it is possible to add default values.
-          # there is nothing special about the word "default"
-          # but we have turned this subcategory into a default value
-          # via the extraCats section at the bottom of categoryDefinitions.
-          default = [
-            nvim-dap
-            nvim-dap-ui
-            nvim-dap-virtual-text
-          ];
-          go = [nvim-dap-go];
-        };
-        lint = with pkgs.vimPlugins; [
-          nvim-lint
+        # debug = with pkgs.vimPlugins; {
+        #   # it is possible to add default values.
+        #   # there is nothing special about the word "default"
+        #   # but we have turned this subcategory into a default value
+        #   # via the extraCats section at the bottom of categoryDefinitions.
+        #   default = [
+        #     nvim-dap
+        #     nvim-dap-ui
+        #     nvim-dap-virtual-text
+        #   ];
+        #   go = [nvim-dap-go];
+        # };
+        # lint = with pkgs.vimPlugins; [
+        #   nvim-lint
+        # ];
+        # format = with pkgs.vimPlugins; [
+        #   conform-nvim
+        # ];
+        # markdown = with pkgs.vimPlugins; [
+        #   markdown-preview-nvim
+        # ];
+        # neonixdev = with pkgs.vimPlugins; [
+        #   lazydev-nvim
+        # ];
+        # general = {
+        #   cmp = with pkgs.vimPlugins; [
+        #     # cmp stuff
+        #     nvim-cmp
+        #     luasnip
+        #     friendly-snippets
+        #     cmp_luasnip
+        #     cmp-buffer
+        #     cmp-path
+        #     cmp-nvim-lua
+        #     cmp-nvim-lsp
+        #     cmp-cmdline
+        #     cmp-nvim-lsp-signature-help
+        #     cmp-cmdline-history
+        #     lspkind-nvim
+        #   ];
+        treesitter = with pkgs.vimPlugins; [
+          nvim-treesitter-textobjects
+          nvim-treesitter.withAllGrammars
+          # This is for if you only want some of the grammars
+          # (nvim-treesitter.withPlugins (
+          #   plugins: with plugins; [
+          #     nix
+          #     lua
+          #   ]
+          # ))
         ];
-        format = with pkgs.vimPlugins; [
-          conform-nvim
-        ];
-        markdown = with pkgs.vimPlugins; [
-          markdown-preview-nvim
-        ];
-        neonixdev = with pkgs.vimPlugins; [
-          lazydev-nvim
-        ];
-        general = {
-          cmp = with pkgs.vimPlugins; [
-            # cmp stuff
-            nvim-cmp
-            luasnip
-            friendly-snippets
-            cmp_luasnip
-            cmp-buffer
-            cmp-path
-            cmp-nvim-lua
-            cmp-nvim-lsp
-            cmp-cmdline
-            cmp-nvim-lsp-signature-help
-            cmp-cmdline-history
-            lspkind-nvim
-          ];
-          treesitter = with pkgs.vimPlugins; [
-            nvim-treesitter-textobjects
-            nvim-treesitter.withAllGrammars
-            # This is for if you only want some of the grammars
-            # (nvim-treesitter.withPlugins (
-            #   plugins: with plugins; [
-            #     nix
-            #     lua
-            #   ]
-            # ))
-          ];
-          telescope = with pkgs.vimPlugins; [
-            telescope-fzf-native-nvim
-            telescope-ui-select-nvim
-            telescope-nvim
-          ];
-          always = with pkgs.vimPlugins; [
-            nvim-lspconfig
-            lualine-nvim
-            gitsigns-nvim
-            vim-sleuth
-            vim-fugitive
-            vim-rhubarb
-            nvim-surround
-          ];
-          extra = with pkgs.vimPlugins; [
-            fidget-nvim
-            # lualine-lsp-progress
-            which-key-nvim
-            comment-nvim
-            undotree
-            indent-blankline-nvim
-            vim-startuptime
-            # If it was included in your flake inputs as plugins-hlargs,
-            # this would be how to add that plugin in your config.
-            # pkgs.neovimPlugins.hlargs
-          ];
-        };
+        # telescope = with pkgs.vimPlugins; [
+        #   telescope-fzf-native-nvim
+        #   telescope-ui-select-nvim
+        #   telescope-nvim
+        # ];
+        # always = with pkgs.vimPlugins; [
+        #   nvim-lspconfig
+        #   lualine-nvim
+        #   gitsigns-nvim
+        #   vim-sleuth
+        #   vim-fugitive
+        #   vim-rhubarb
+        #   nvim-surround
+        # ];
+        # extra = with pkgs.vimPlugins; [
+        #   fidget-nvim
+        #   # lualine-lsp-progress
+        #   which-key-nvim
+        #   comment-nvim
+        #   undotree
+        #   indent-blankline-nvim
+        #   vim-startuptime
+        #   # If it was included in your flake inputs as plugins-hlargs,
+        #   # this would be how to add that plugin in your config.
+        #   # pkgs.neovimPlugins.hlargs
+        # ];
       };
+    };
 
-      # bibliotecas compartilhadas a serem adicionadas ao LD_LIBRARY_PATH
-      # variável disponível para o tempo de execução do nvim
-      sharedLibraries = {
-        general = with pkgs; [
-          # libgit2
-        ];
-      };
+    # bibliotecas compartilhadas a serem adicionadas ao LD_LIBRARY_PATH
+    # variável disponível para o tempo de execução do nvim
+    # sharedLibraries = {
+    #   general = with pkgs; [
+    #     # libgit2
+    #   ];
+    # };
 
-      # environmentVariables:
-      # esta seção é para variáveis de ambiente que devem estar disponíveis
-      # em TEMPO DE EXECUÇÃO para plugins. Estarão disponíveis no path dentro do terminal do neovim
-      environmentVariables = {
-        test = {
-          CATTESTVAR = "Funcionou!";
-        };
+    # environmentVariables:
+    # esta seção é para variáveis de ambiente que devem estar disponíveis
+    # em TEMPO DE EXECUÇÃO para plugins. Estarão disponíveis no path dentro do terminal do neovim
+    environmentVariables = {
+      test = {
+        CATTESTVAR = "Funcionou!";
       };
+    };
 
-      # Se você souber o que são, pode fornecer personalizados por categoria aqui.
-      # Se não souber, confira este link:
-      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
-      extraWrapperArgs = {
-        test = [
-          ''--set CATTESTVAR2 "Funcionou novamente!"''
-        ];
-      };
+    # Se você souber o que são, pode fornecer personalizados por categoria aqui.
+    # Se não souber, confira este link:
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
+    extraWrapperArgs = {
+      test = [
+        ''--set CATTESTVAR2 "Funcionou novamente!"''
+      ];
+    };
 
-      # listas das funções que você teria passado para
-      # python.withPackages ou lua.withPackages
+    # listas das funções que você teria passado para
+    # python.withPackages ou lua.withPackages
 
-      # obter o caminho para este ambiente python
-      # no seu config lua via
-      # vim.g.python3_host_prog
-      # ou execute a partir do terminal nvim via :!<nome-do-pacote>-python3
-      extraPython3Packages = {
-        test = _: [];
-      };
-      # preenche $LUA_PATH e $LUA_CPATH
-      extraLuaPackages = {
-        test = [(_: [])];
-      };
+    # obter o caminho para este ambiente python
+    # no seu config lua via
+    # vim.g.python3_host_prog
+    # ou execute a partir do terminal nvim via :!<nome-do-pacote>-python3
+    extraPython3Packages = {
+      test = _: [];
+    };
+    # preenche $LUA_PATH e $LUA_CPATH
+    extraLuaPackages = {
+      test = [(_: [])];
+      # };
     };
 
     # E então construa um pacote com categorias específicas de cima aqui:
